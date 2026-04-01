@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+{% block title %}
+    {{ livreAAfficher.titre }}
+{% endblock %}
+
+{% block body %}
+
+    <a href="{{ path('app_livres') }}">Retour à la liste</a>
+    <br>
+    <div class="livreAAfficher">
+        <h3>{{ livreAAfficher.titre }}</h3>
+        <p><em>{{ livreAAfficher.auteur.prenom }} {{ livreAAfficher.auteur.nom }}</em> - {{ livreAAfficher.annee }}</p>
+        <h5>Résumé du livre :</h5>
+        <p>{{ livreAAfficher.resume }}</p>
+    </div>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+{% block title %}
+    {{ auteurAAfficher.prenom }} {{ auteurAAfficher.nom }}
+{% endblock %}
+
+{% block body %}
+    <div style="background-color: #f0f0f0; padding: 20px; border-radius: 5px; margin-bottom: 20px; color: black; width: 500px">
+        <a href="{{ path('app_auteur') }}"> ← Retour à la liste</a>
+        <h3>Détail sur l'auteur :</h3>
+        <br>
+        <div class="auteurAAfficher">
+            <h2>{{ auteurAAfficher.prenom }} {{ auteurAAfficher.nom }}</h2>
+            <p>{{ auteurAAfficher.nationalite }}, née le {{ auteurAAfficher.dateNaissance|date('d/m/Y') }}</p>
+            <h3>Biographie de l'auteur :</h3>
+            <p>{{ auteurAAfficher.biographie }}</p>
+        </div>
+    </div>
+{% endblock %}
