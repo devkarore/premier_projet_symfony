@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\LivreRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: LivreRepository::class)]
 class Livre
@@ -14,18 +15,23 @@ class Livre
     #[ORM\Column]
     private ?int $id = null;
 
+    #[Assert\NotBlank(message: 'Le titre est obligatoire')]
     #[ORM\Column(length: 255)]
     private ?string $titre = null;
 
+    #[Assert\NotBlank(message: 'L\'année est obligatoire')]
     #[ORM\Column]
     private ?int $annee = null;
 
+    #[Assert\NotBlank(message: 'Le genre est obligatoire')]
     #[ORM\Column(length: 100)]
     private ?string $genre = null;
 
+    #[Assert\NotBlank(message: 'Le résumé est obligatoire')]
     #[ORM\Column(type: Types::TEXT)]
     private ?string $resume = null;
 
+    #[Assert\NotBlank(message: 'L\'auteur est obligatoire')]
     #[ORM\ManyToOne(inversedBy: 'livres')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Auteur $auteur = null;

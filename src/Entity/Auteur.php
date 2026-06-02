@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: AuteurRepository::class)]
 class Auteur
@@ -16,22 +17,27 @@ class Auteur
     #[ORM\Column]
     private ?int $id = null;
 
+    #[Assert\NotBlank(message: 'Le nom est obligatoire')]
     #[ORM\Column(length: 100)]
     private ?string $nom = null;
-
+    
+    #[Assert\NotBlank(message: 'Le prénom est obligatoire')]
     #[ORM\Column(length: 100)]
     private ?string $prenom = null;
 
-
+    #[Assert\NotBlank(message: 'La biographie est obligatoire')]
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $biographie = null;
 
     #[ORM\Column(type: Types::DATE_IMMUTABLE)]
+    #[Assert\NotBlank(message: 'La date de naissance est obligatoire')]
+    #[Assert\LessThan('today', message: 'La date doit être dans le passé.')]
     private ?\DateTimeImmutable $dateNaissance = null;
 
+    #[Assert\NotBlank(message: 'La nationalité est obligatoire')]
     #[ORM\Column(length: 100)]
     private ?string $nationalite = null;
-
+    
     /**
      * @var Collection<int, Livre>
      */

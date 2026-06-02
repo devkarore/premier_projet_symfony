@@ -5,11 +5,14 @@
 
 {% block body %}
 
-    <a href="{{ path('app_livres') }}">Retour à la liste</a>
+    <a href="{{ path('app_livres') }}">Retour à la liste des livres</a>
     <br>
-    <div class="livreAAfficher">
+    <div class="livreAAfficher" style="background-color: #f0f0f0; padding: 20px; border-radius: 5px; margin-bottom: 20px; color: black; width: 500px">
         <h3>{{ livreAAfficher.titre }}</h3>
-        <p><em>{{ livreAAfficher.auteur.prenom }} {{ livreAAfficher.auteur.nom }}</em> - {{ livreAAfficher.annee }}</p>
+        <a href="{{ path('app_auteur_detail', {id: livreAAfficher.auteur.id}) }}">
+            <p><em>{{ livreAAfficher.auteur.prenom }} {{ livreAAfficher.auteur.nom }}</em>
+        </a>
+         - {{ livreAAfficher.annee }}</p>
         <h5>Résumé du livre :</h5>
         <p>{{ livreAAfficher.resume }}</p>
     </div>

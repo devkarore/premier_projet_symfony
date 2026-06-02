@@ -4,15 +4,31 @@
 {% endblock %}
 
 {% block body %}
-    <div style="background-color: #f0f0f0; padding: 20px; border-radius: 5px; margin-bottom: 20px; color: black; width: 500px">
-        <a href="{{ path('app_auteur') }}"> ← Retour à la liste</a>
+    <div>
+        <a href="{{ path('app_auteur') }}"> ← Retour à la liste des auteurs</a>
         <h3>Détail sur l'auteur :</h3>
         <br>
-        <div class="auteurAAfficher">
-            <h2>{{ auteurAAfficher.prenom }} {{ auteurAAfficher.nom }}</h2>
-            <p>{{ auteurAAfficher.nationalite }}, née le {{ auteurAAfficher.dateNaissance|date('d/m/Y') }}</p>
-            <h3>Biographie de l'auteur :</h3>
-            <p>{{ auteurAAfficher.biographie }}</p>
+        <div class="auteurAAfficher" style="display: flex; flex-direction: column; align-items: center;">
+            <div style="background-color: #f0f0f0; padding: 20px; border-radius: 5px; margin-bottom: 20px; color: black; width: 500px">
+                <h2>{{ auteurAAfficher.prenom }} {{ auteurAAfficher.nom }}</h2>
+                <p>{{ auteurAAfficher.nationalite }}, née le {{ auteurAAfficher.dateNaissance|date('d/m/Y') }}</p>
+                <h3>Biographie de l'auteur :</h3>
+                <p>{{ auteurAAfficher.biographie }}</p>
+            </div>
         </div>
     </div>
+    <div style="display:flex;">
+        {% for livre in auteurAAfficher.livres %}
+            <div style="background-color: #f0f0f0; padding: 20px; border-radius: 5px; margin: 20px; color: black; width: 500px">
+                <div class="livre">
+                    <h3>{{ livre.titre }}</h3>
+                    <p><em>{{ livre.auteur.prenom }} {{ livre.auteur.nom }}</em> - {{ livre.annee }}</p>
+                    <p><em>{{ livre.genre }}</em></p>
+                    <a href="{{ path('app_livre_detail', {id: livre.id}) }}" >Voir le détail</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+
 {% endblock %}
